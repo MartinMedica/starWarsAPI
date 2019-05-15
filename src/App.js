@@ -1,26 +1,65 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Person from "./components/person";
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: null,
+      isLoaded: false,
+      items: []
+    };
+    this.getRandomPerson = this.getRandomPerson.bind(this);
+  }
+  getRandomPerson() {
+    const rand = Math.floor(Math.random() * 87 + 1);
+    this.setState({
+      isLoaded: false
+    });
+    fetch(`https://swapi.co/api/people/${rand}`)
+      .then(res => res.json())
+      .then(
+        result => {
+          this.setState({
+            isLoaded: true,
+            items: result
+          });
+        },
+        error => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      );
+  }
+  handleClick = e => {
+    e.preventDefault();
+    this.getRandomPerson();
+  };
+
+  componentDidMount() {
+    this.getRandomPerson();
+  }
+
+  render() {
+    const { error, isLoaded, items } = this.state;
+    if (error) {
+      return <div>Error: {error.message}</div>;
+    } else {
+      return (
+        <div className="container">
+          <h1 className>StarWars API</h1>
+          <Person isLoaded={isLoaded} items={items} />
+          <button className="btn" onClick={this.handleClick}>
+            Get random person
+          </button>
+        </div>
+      );
+    }
+  }
 }
 
 export default App;

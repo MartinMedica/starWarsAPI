@@ -1,33 +1,59 @@
-.App {
+body {
+  font-family: "Days One";
+  font-weight: 500;
+  background-color: #070b34;
+  color: #f4f4f4;
+  font-size: 1.3rem;
+}
+.btn {
+  font-size: 1.3rem;
+  padding: 0.3rem 1rem;
+  background-color: #f4f4f4;
+  border: #e0e0e0 2px solid;
+  border-radius: 7px;
+}
+.btn:hover {
+  background-color: #e5e5e5;
+  border: #e0e0e0 2px solid;
+}
+
+.results {
+  padding: 1.5rem;
+  width: 50%;
+  height: 50vh;
+  border: #ffe807 2px solid;
+  border-radius: 20px;
+  margin: 1.5rem auto;
+}
+.results__title {
+  color: #ffe807;
+  text-align: center;
+  font-size: 1.5rem;
+}
+.results__list {
+  width: 70%;
+  margin: 0 auto;
+  padding: 0;
+  text-align: left;
+  list-style: none;
+}
+.results__list__item {
+  font-weight: bold;
+  float: left;
+  width: 100%;
+}
+.results__list__item span {
+  font-weight: 500;
+  float: right;
+}
+.container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 0.5rem;
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.container h1 {
+  /* font-size: 3rem; */
+  color: #ffe807;
 }
